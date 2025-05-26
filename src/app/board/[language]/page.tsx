@@ -6,13 +6,12 @@ import BoardPage from '@/components/BoardPage';
 
 export async function generateStaticParams() {
     return languages.map((lang) => ({
-      language: lang.language,
+      language: lang.title,
     }));
   }
 
 
-const LanguageBoardPage = ({ params }: { params: { language: string } }) => {
-    const languageData = languages.find((lang) => lang.language === params.language)?.title    
+const LanguageBoardPage = ({ params }: { params: { language: string } }) => {   
     return (
     <BoardPage
     mylanguage={params.language}

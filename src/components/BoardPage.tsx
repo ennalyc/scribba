@@ -38,14 +38,16 @@ function BoardPage({mylanguage} : {mylanguage: string | undefined}) {
                     title={mylanguage}
                     type={'board'}
                     hasText={false}
+                    carID={undefined}
                     />
                 </div>
                 <div className='flex-1 mx-8 p-3'> 
                     <div className='flex flex-wrap gap-3 justify-start items-start'>
                         {
+            
                         userCarriers.map((car) => (
                         <div key={car.id} className='rounded-xl hover:bg-gray-200'>
-                            <Link href={`/board/${mylanguage}/${car.carrierType}+${car.id}`}>
+                            <Link href={`/board/${mylanguage}/${car.carrierType}/${car.id}`}>
                                 <CarrierCard 
                                 carrierImage={null}
                                 carrierType={car.carrierType}
