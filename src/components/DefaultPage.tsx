@@ -16,6 +16,7 @@ function DefaultPage({title, illustration, mytype}: {title: string | undefined, 
         title={title}
         type={mytype}
         hasText={true}
+        carID={undefined}
         />
         <Image src={illustration} alt='illustation' className='z-0 h-80 w-80 opacity-50 self-center object-fill'/>
         </div>

@@ -61,8 +61,10 @@ export const carriers = [
     {
       id: 123,
       carrierType: "selection",
+      description: 'Some short stories i collected',
       image: undefined,
       parentCarrierId: 23656,
+      language: boards.find(myboard => myboard.user_id === 23656)?.language,
       title: "Chinese Short Stories",
       createdAt: "2025-04-28T09:00:00Z",
       updatedAt: "2025-04-28T09:00:00Z"
@@ -70,6 +72,7 @@ export const carriers = [
     {
       id: 213,
       carrierType: "album",
+      description: 'Some videos i collected',
       image: undefined,
       parentCarrierId: 23656,
       title: "Chinese Listening Practice",
@@ -79,6 +82,7 @@ export const carriers = [
     {
       id: 321,
       carrierType: "folder",
+      description: 'Some content i collected',
       image: undefined,
       parentCarrierId: 23656,
       title: "My Materials",
@@ -114,8 +118,8 @@ export const block = [
 
 export const CarrierText = [
   {id: 'board', text: 'This is your board. Inside this board you can add any type of content, but you can only have a single board per language.'},
-  {id: 'selection', text: ''},
-  {id: 'album', text: ''},
-  {id: 'blog', text: ''},
-  {id: 'folder', text: ''}
+  {id: 'selection', text: 'This is a selection. Inside a selection you can only add text files. You can have as many text files as you want.'},
+  {id: 'album', text: 'This is an album. You can add video and audio files. '},
+  {id: 'blog', text: 'This is a blog. Inside a blog you can only add pages and raw media (selections, albums and folders are not permitted). You can have as many blogs as you want.'},
+  {id: 'folder', text: 'This is a folder. Inside a folder you can add any type of content, but pages. You can have as many folders as you want.'}
 ]
