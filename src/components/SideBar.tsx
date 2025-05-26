@@ -2,117 +2,118 @@
 import React, { useState } from 'react'
 import Image from "next/image"
 import logo from "@/scribba-logo.png"
-import { ChevronsLeft, ChevronsRight, Plus, WalletCards, ChartArea, NotebookText, Settings } from 'lucide-react'
+import { ChevronsLeft, ChevronsRight, Plus, WalletCards, ChartArea, NotebookText, Settings, BookHeart } from 'lucide-react'
 import Link from 'next/link'
-import { CN, FR, MX } from 'country-flag-icons/react/3x2'
 import { languages } from "@/lib/languages"
 import { useSidebarStore } from '@/store/sidebarStore'
 
 
 const SideBar = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebarStore()
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   
   //Isso aqui são dados mockados!!!
-    const flagComponents = {
-      CN,
-      FR,
-      MX
+    const iconComponents = {
+      NotebookText,
+      Settings,
+      ChartArea,
+      BookHeart
+
     }
     const flashcards = [
-      {title: "Chinese Immersion", id: 1},
-      {title: "French Immersion", id: 2}
+      {title: "Chinese Immersion", id: 110},
+      {title: "French Immersion", id: 220}
     ]
 
     const user = [
       {name: "Hanna", level: 2, progression: "mid-beginner"}
     ]
+
+    const otherStuff = [
+      {id: 101, title: 'Progress', icon: 'ChartArea'},
+      {id: 202, title: 'Vocabulary', icon: 'NotebookText'},
+      {id: 303, title: 'Input Content', icon: 'BookHeart'},
+      {id: 404, title: 'Settings', icon: 'Settings'}
+    ]
     return (
         <>
         {isSidebarOpen ? 
         
-        <div className={`bg-gray-100 justify-center items-center top-0 left-0 fixed p-6 w-64 h-full border-r border-gray-200
-        transform transition-transform duration-300 ${!isSidebarOpen && '-translate-x-full'} mr-64`}>
-          <div className='flex justify-between items-center'>
+        <div className={`h-26/27 ml-3 my-3 rounded-xl bg-neutral-100 justify-center items-center top-0 left-0 fixed p-6 w-72 border border-neutral-400
+        transform transition-transform duration-300 ${!isSidebarOpen && '-translate-x-full'} mr-75`}>
+          <div className='flex justify-between items-center '>
             <Link href={'/'}><Image src={logo} alt='logo' className='h-6 w-20 object-contain'/></Link>
-            <ChevronsLeft color='gray' size={16} onClick={toggleSidebar} className='hover:bg-gray-300 w-8 rounded-lg'/>
+            <ChevronsLeft color='gray' onClick={toggleSidebar} className='hover:bg-neutral-300 w-8 h-4 rounded-lg'/>
           </div>
 
-          <div className='my-4 mb-4 flex gap-2 text-gray-500 mb-4'>
-            <div className='h-12 w-12 bg-gray-300 rounded-full'>
+          <div className='justify-start items-start mt-8 mb-8 flex gap-2 text-neutral-500'>
+            <div className='h-14 w-14 bg-neutral-300 rounded-lg border-3 border-neutral-900'>
             </div>
-            <div className='items-center justify-center gap-2'>
-              <div className='flex justify-between'>
-                <h4 className='text-sm'>{user[0].name}</h4>
-                <h4 className='text-sm'>Level {user[0].level}</h4>
+            <div className='items-center justify-center'>
+              <h4 className='text-sm text-neutral-900 font-medium'>{user[0].name}</h4>
+              <div className='flex justify-between mb-1'>
+                <h4 className='text-xs'>{user[0].progression}</h4>
+                <h4 className='text-xs'>280/500</h4>
               </div>
-              <div className='h-2 w-34 bg-gray-300 rounded-xl'>
-              </div>
-              <div className='flex justify-between'>
-                <h4 className='text-sm'>{user[0].progression}</h4>
+              <div className='h-3 w-43 bg-neutral-900 rounded-xl'>
+                <div className='h-3 w-16 bg-teal-600 rounded-full flex justify-end items-center overflow-hidden'>
+                  <div className='h-1/2 w-2 bg-teal-800 rounded-full'></div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className='flex justify-between items-center text-gray-500'>
+          <div className='flex justify-between items-center text-gray-500 text-sm w-full'>
             <h3>Languages</h3>
             <Link href={""}>
-              <Plus color='gray' size={16} className='hover:bg-gray-300 w-8 rounded-lg'/>
+              <Plus color='gray' className='hover:bg-neutral-200 w-8 h-4 rounded-lg'/>
             </Link>
           </div>
             <div className='mt-2'>
-              {languages.map((lang)=>{
-                const Flag = flagComponents[lang.flag as keyof typeof flagComponents]
-                return (
-                  <div key={lang.id} className='flex items-center h-8 w-48 hover:bg-gray-300 text-gray-500 hover:text-gray-900 rounded-sm'>
-                  <Link href={`/board/${lang.language}`} className='flex items-center gap-1 px-2'>
-                    <Flag className="h-6 w-6" />
-                    <h3>{lang.title}</h3>
+              {languages.map((lang)=>(
+              <div key={lang.id} onClick={() => setSelectedIndex(lang.id)} className={`${selectedIndex == lang.id ? 'bg-teal-600 text-white hover:bg-teal-700 px-2 font-medium hover:font-medium hover:text-white' : 'bg-neutral-100'} flex items-center h-8 hover:bg-neutral-200 text-neutral-500 hover:text-neutral-950 hover:px-2 rounded-sm text-sm`}>
+                  <Link href={`/board/${lang.language}`} className='flex items-center gap-2'>
+                    <Image src={selectedIndex == lang.id ? lang.flagActive : lang.flagInactive} alt='icon' className='h-4 w-4 object-fit'/>
+                    <p>{lang.title}</p>
                   </Link>
                 </div>
-                )
-              })}
+              ))}
             </div>
 
-            <div className='flex justify-between items-center text-gray-500 mt-2'>
+            <div className='flex w-full justify-between items-center text-neutral-500 mt-2 text-sm'>
               <h3>Flashcards</h3>
               <Link href={""}>
-                <Plus color='gray' size={16} className='hover:bg-gray-300 w-8 rounded-lg px-2'/>
+                <Plus color='gray' size={16} className='hover:bg-neutral-300 w-8 rounded-lg px-2'/>
               </Link>
           </div>
 
           <div className='mt-2'>
             {
               flashcards.map((titleof) => (
-                <div className="flex gap-1 items-center h-8 w-48 hover:bg-gray-300 text-gray-500 hover:text-gray-900 rounded-sm" key={titleof.id}>
-                    <WalletCards color='gray' size={16}/>
-                    <h3>{titleof.title}</h3>
+                <div onClick={() => setSelectedIndex(titleof.id)} className={`${selectedIndex === titleof.id ? 'bg-teal-600 text-white hover:bg-teal-700 px-2 font-medium hover:font-medium hover:text-white' : 'bg-neutral-100'} flex items-center gap-2 items-center h-8 hover:px-2 hover:bg-neutral-300 text-neutral-500 hover:text-neutral-950 rounded-sm text-sm`} key={titleof.id}>
+                    <WalletCards size={16}/>
+                    <p>{titleof.title}</p>
                 </div>
               ))
             }
           </div>
-
-          <div className='text-gray-500 mt-2'>
-              <h3>Others</h3>
-          </div>
+          <h3 className='text-gray-500 mt-2 text-sm'>Others</h3>
           <div className='mt-2'>
-              <Link href={""} className='flex gap-1 h-8 w-48 items-center hover:bg-gray-300 text-gray-500 hover:text-gray-900 rounded-sm'>
-                <ChartArea color='gray' size={16}/>
-                <h3>Progress</h3>
-              </Link>
-              <Link href={""} className='flex gap-1 h-8 w-48 items-center hover:bg-gray-300 text-gray-500 hover:text-gray-900 rounded-sm'>
-                <NotebookText color='gray' size={16}/>
-                <h3>Vocabulary</h3>
-              </Link>
-              <Link href={""} className='flex gap-1 h-8 w-48 items-center hover:bg-gray-300 text-gray-500 hover:text-gray-900 rounded-sm'>
-                <Settings color='gray' size={16}/>
-                <h3>Settings</h3>
-              </Link>
+              {otherStuff.map((stuff) => {
+                const Icon = iconComponents[stuff.icon as keyof typeof iconComponents]
+                return (
+                  <Link key={stuff.id} onClick={() => setSelectedIndex(stuff.id)} href={""} className={`${selectedIndex === stuff.id ? 'bg-teal-600 text-white hover:bg-teal-700 px-2 font-medium hover:font-medium hover:text-white' : 'bg-neutral-100'} flex items-center gap-2 items-center h-8 hover:px-2 hover:bg-neutral-300 text-neutral-500 hover:text-neutral-950 rounded-sm text-sm`}>
+                    <Icon className='h-4 w-4'/>
+                    <p>{stuff.title}</p>
+                  </Link>
+                )
+              })}
           </div>
       </div>
       : 
-      <div className='flex gap-2 justify-start w-64 items-center absolute m-6'>
+      <div className='absolute flex gap-2 justify-start w-64 items-center m-9'>
         <Link href={'/'}><Image src={logo} alt='logo' className='h-6 w-20 object-contain'/></Link>
-        <ChevronsRight color='black' size={16} onClick={toggleSidebar} className='hover:bg-gray-400 w-8 rounded-lg transform transition-transform duration-30 translate-x-0'/>
+        <ChevronsRight color='black' size={16} onClick={toggleSidebar} className='hover:bg-neutral-200 w-8 rounded-lg transform transition-transform duration-30 translate-x-0'/>
       </div>
       }
         </>
