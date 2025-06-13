@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import Link from 'next/link'
 import DefaultPage from './DefaultPage'
@@ -47,7 +46,7 @@ function BoardPage({mylanguage} : {mylanguage: string | undefined}) {
             
                         userCarriers.map((car) => (
                         <div key={car.id} className='rounded-xl hover:bg-gray-200'>
-                            <Link href={`/board/${mylanguage}/${car.carrierType}/${car.id}`}>
+                            <Link href={`/boards/${mylanguage}/${car.id}`}>
                                 <CarrierCard 
                                 carrierImage={null}
                                 carrierType={car.carrierType}

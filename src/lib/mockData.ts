@@ -95,13 +95,19 @@ export const files = [
   {
     file_id: 19876,
     parentCarrierId: 123,
-    language: boards[2].language,
+    language: 'chinese',
     createdAt: "2025-04-28T09:20:00Z",
     updatedAt: "2025-04-28T09:20:00Z",
     content: {
       title: '开会',
       text: '今天下午我要开会， 这个会很重要， 但是我没准备好。 中午， 我没时间吃东西， 就在办公室里一边喝咖啡、 吃面包， 一边准备开会的东西。 终于， 在开会前， 我准备好了。',
-    }
+      words: {
+        total: 234,
+        new: 3,
+        learning: 10
+      }
+    },
+    image: undefined,
   }
 ]
 
@@ -121,5 +127,6 @@ export const CarrierText = [
   {id: 'selection', text: 'This is a selection. Inside a selection you can only add text files. You can have as many text files as you want.'},
   {id: 'album', text: 'This is an album. You can add video and audio files. '},
   {id: 'blog', text: 'This is a blog. Inside a blog you can only add pages and raw media (selections, albums and folders are not permitted). You can have as many blogs as you want.'},
-  {id: 'folder', text: 'This is a folder. Inside a folder you can add any type of content, but pages. You can have as many folders as you want.'}
+  {id: 'folder', text: 'This is a folder. Inside a folder you can add any type of content, but pages. You can have as many folders as you want.'},
+  {id: 'text-file', text: "This is a blank text file. You can edit the text by clicking on the edit button. If you wish to add an audio file you can, but it won't synchronize with the text. If that's what you want, you need to create a record inside an album."}
 ]
