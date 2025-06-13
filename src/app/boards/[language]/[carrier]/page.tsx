@@ -6,7 +6,6 @@ import CarrierPages from '@/components/CarrierPages';
 export async function generateStaticParams() {
     return carriers.map((carrier) => ({
       language: carrier.title,
-      carrierType: carrier.carrierType,
       carrier: carrier.id.toString(),
     }));
   }

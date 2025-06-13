@@ -72,7 +72,7 @@ const SideBar = () => {
             <div className='mt-2'>
               {languages.map((lang)=>(
               <div key={lang.id} onClick={() => setSelectedIndex(lang.id)} className={`${selectedIndex == lang.id ? 'bg-teal-600 text-white hover:bg-teal-700 px-2 font-medium hover:font-medium hover:text-white' : 'bg-neutral-100'} flex items-center h-8 hover:bg-neutral-200 text-neutral-500 hover:text-neutral-950 hover:px-2 rounded-sm text-sm`}>
-                  <Link href={`/board/${lang.language}`} className='flex items-center gap-2'>
+                  <Link href={`/boards/${lang.language}`} className='flex items-center gap-2'>
                     <Image src={selectedIndex == lang.id ? lang.flagActive : lang.flagInactive} alt='icon' className='h-4 w-4 object-fit'/>
                     <p>{lang.title}</p>
                   </Link>
