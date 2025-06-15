@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={montserrat.className}
+        className={`${montserrat.className} bg-gray-100/60`}
       >
         <ClientLayout>
         {children}
