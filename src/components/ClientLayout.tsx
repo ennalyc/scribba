@@ -1,6 +1,6 @@
 'use client';
 
-import Sidebar from '@/components/SideBar';
+import SideBar from '@/components/sidebar/SideBar';
 import { useSidebarStore } from '@/store/sidebarStore';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
@@ -8,8 +8,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <div className="flex">
-      <Sidebar />
-      <main className={`transition-all duration-300 ${isSidebarOpen ? 'ml-75' : 'ml-0'} w-full`}>
+      <SideBar />
+      <main className={`transition-all duration-300 ${isSidebarOpen ? 'ml-24' : 'ml-0'} w-full`}>
         {children}
       </main>
     </div>

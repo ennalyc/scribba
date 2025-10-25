@@ -5,6 +5,8 @@ type SidebarStore = {
   toggleSidebar: () => void;
   openSidebar: () => void;
   closeSidebar: () => void;
+  sidebarItem: string;
+  clickedSidebarItem: (i: string) => void;
 };
 
 export const useSidebarStore = create<SidebarStore>((set) => ({
@@ -12,4 +14,6 @@ export const useSidebarStore = create<SidebarStore>((set) => ({
   toggleSidebar: () => set((state) => ({ isSidebarOpen: !state.isSidebarOpen })),
   openSidebar: () => set({ isSidebarOpen: true }),
   closeSidebar: () => set({ isSidebarOpen: false }),
+  sidebarItem: '',
+  clickedSidebarItem: (i) => set({sidebarItem: i})
 }));
