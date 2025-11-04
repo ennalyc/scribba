@@ -4,10 +4,10 @@ import DefaultPage from '@/components/DefaultPage';
 import BoardPage from '@/components/BoardPage';
 
 
-const LanguageBoardPage = ({ params }: { params: string }) => {   
+const LanguageBoardPage = ({ params }: { params: {language: string} }) => {   
     return (
     <BoardPage
-    mylanguage={params}
+    mylanguage={params.language}
     />
   )
 }

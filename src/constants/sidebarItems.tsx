@@ -6,13 +6,13 @@ export const languages = [
       id: 'zh',
       title: 'Chinese',
       icon: <Flag size={20}/>,
-      linkTo: '/board/chinese'
+      linkTo: '/board/Chinese'
     },
     {
       id: 'fr',
       title: 'French',
       icon: <Flag size={20}/>,
-      linkTo: '/board/french'
+      linkTo: '/board/French'
     }
   ]
 
