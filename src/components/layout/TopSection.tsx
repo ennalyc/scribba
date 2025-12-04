@@ -4,6 +4,7 @@ import AddButton from '../ui/AddButton'
 import HeaderButton from '../ui/HeaderButton'
 import Header from './Header'
 import { useSidebarStore } from '@/store/sidebarStore'
+import { pagesAndItems } from '@/constants/addModalItems'
 
 const TopSection = ({hasEdit, page}: {hasEdit: boolean, page: string}) => {
     const { isSidebarOpen } = useSidebarStore()
@@ -23,7 +24,7 @@ const TopSection = ({hasEdit, page}: {hasEdit: boolean, page: string}) => {
     }
 
     const isHeaderAdded = !!headerFile
-    
+    const modalType = pagesAndItems.find(c => c.pageType === page)
     return (
         <>
         {
@@ -38,17 +39,31 @@ const TopSection = ({hasEdit, page}: {hasEdit: boolean, page: string}) => {
                     onFileSelect={handleHeaderUpload}
                     wasHeaderAdded={isHeaderAdded}
                     />
-                    <AddButton/>
+                    {
+                            modalType && (
+                                <AddButton
+                                addOptions={modalType}
+                                />
+                            )
+                    }
                 </div>
                 </div>
             ): (
-                <div className={`${!isSidebarOpen ? 'ml-32' : ''} flex flex-row px-8 mt-6 gap-3 items-center text-neutral-500 text-md`}>
+                <div className={`${!isSidebarOpen ? 'ml-32' : ''} flex flex-row px-8 mt-6 gap-3 items-baseline text-neutral-500 text-md`}>
                     <p>{page}</p>
-                    <HeaderButton
-                    onFileSelect={handleHeaderUpload}
-                    wasHeaderAdded={isHeaderAdded}
-                    />
-                    <AddButton/>
+                    <div className='flex flex-row items-start gap-3'>
+                        <HeaderButton
+                        onFileSelect={handleHeaderUpload}
+                        wasHeaderAdded={isHeaderAdded}
+                        />
+                        {
+                            modalType && (
+                                <AddButton
+                                addOptions={modalType}
+                                />
+                            )
+                        }
+                    </div>
                 </div>
             )
         }

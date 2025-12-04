@@ -4,7 +4,9 @@ const HeaderButton = ({onFileSelect, wasHeaderAdded}: {onFileSelect: (e: any) =>
   
   const handleChange = (e: any) => {
     const file = e.target.files[0];
+    if (file) {
       onFileSelect(file)
+    }
   }
   return (
     <>

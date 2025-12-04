@@ -15,20 +15,22 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       isSidebarOpen ? (
         <div className="flex flex-row">
           <SideBar />
-          <main className={`transition-all duration-300 flex-1`}>
+          <main className={`transition-all duration-300 flex-1 bg-white`}>
             {children}
           </main>
         </div>
       ): (
-          <main className={`transition-all duration-300 w-full`}>
+          <div className={`transition-all duration-300 flex flex-row`}>
             <div className='fixed z-10 p-6 flex flex-row gap-2 items-center'>
               <Link href={'/'}>
                 <Image className='h-8 w-24 object-contain' src={logo} alt='logo'/>
               </Link>
               <SquareMenu onClick={() => toggleSidebar()} className='text-black' size={18}/>
+            </div>
+            <main className='flex-1'>
+              {children}
+            </main>
           </div>
-            {children}
-          </main>
       )
     }
     </>
