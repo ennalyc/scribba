@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 
 const Header = ({image}: {image: string | null}) => {
   return (
